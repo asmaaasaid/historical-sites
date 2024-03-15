@@ -30,7 +30,7 @@ app.use(cors());
 
 
 //MiddleWare
-app.use(express.json({limit: '50kb'} ));
+app.use(express.json(/*{limit: '50kb'}*/ ));
 
 app.use(express.static(path.join(__dirname, "uploads")));
 
@@ -50,15 +50,15 @@ app.use(helmet());
 
 // security for limiting the requestes
 // Limit each IP to 100 requests in `window` (here, per 15 minutes)
-const limiter = rateLimit({
-  windowMs: 30 * 60 * 1000, // 30 minutes
-  max: 50,
-  message:
-    'Too many accounts created from this IP, please try again after an hour',
-});
+// const limiter = rateLimit({
+//   windowMs: 30 * 60 * 1000, // 30 minutes
+//   max: 50,
+//   message:
+//     'Too many accounts created from this IP, please try again after an hour',
+// });
 
 //rate limiting middleware to all requests
-app.use('/api', limiter);
+// app.use('/api', limiter);
 
 
 // Middleware to protect against HTTP Parameter Pollution attacks

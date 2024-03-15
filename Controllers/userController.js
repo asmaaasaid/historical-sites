@@ -52,7 +52,7 @@ exports.getUser = asyncHandler(async (req, res, next) => {
 // Create new user
 // @route: POST /api/users
 exports.createUser = asyncHandler(async (req, res) => {
-  try {
+  // 
     const { name, email, phone, password, profileImage, role } = req.body;
 
     const user = await User.create({
@@ -66,10 +66,8 @@ exports.createUser = asyncHandler(async (req, res) => {
     });
 
     res.status(201).json({ data: user });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
+  
+  
 });
 
 // Update user by ID
