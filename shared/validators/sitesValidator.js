@@ -5,11 +5,11 @@ const subCategoryModel = require('../../Models/subcategoryModel');
 const categoryModel = require('../../Models/categoryModel');
 
 exports.createSitesValidation = [
-  check("title")
+  check("name")
     .isLength({ min: 3 })
-    .withMessage("Site title must be at least 3 chars")
+    .withMessage("Site name must be at least 3 chars")
     .notEmpty()
-    .withMessage("Site title is required"),
+    .withMessage("Site name is required"),
 
   check("description")
     .notEmpty()
@@ -17,9 +17,9 @@ exports.createSitesValidation = [
     .isLength({ max: 2000 })
     .withMessage("This description is very large and should not exceed 2000 words"),
 
-  check("imageCover")
+  check("image")
     .notEmpty()
-    .withMessage("Site image cover is required"),
+    .withMessage("Site image  is required"),
 
   check("images")
     .optional()

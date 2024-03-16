@@ -75,10 +75,10 @@ res.status(200).json({ data: review})
 // Create new review
 // @route: /api/reviews
 exports.createReview = asyncHandler(async (req, res) => {
-    const { title, ratings, site , image} = req.body;
+    const { name, ratings, site , image} = req.body;
         const user = req.user._id;
 
-    const review = await Review.create({ title, ratings, user, site, image });
+    const review = await Review.create({ name, ratings, user, site, image });
     
     res.status(201).json({ data: review });
 });
@@ -89,9 +89,9 @@ exports.createReview = asyncHandler(async (req, res) => {
 // @route: PUT /api/reviews/:id
 exports.updateReview = asyncHandler(async (req, res, next) => {
     const { id } = req.params; // Extracting ID from request parameters
-    const { title, ratings, image } = req.body; 
+    const { name, ratings, image } = req.body; 
 
-    const review = await Review.findByIdAndUpdate(id, { title, ratings, image }, {
+    const review = await Review.findByIdAndUpdate(id, { name, ratings, image }, {
         new: true 
     });
 

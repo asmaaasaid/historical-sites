@@ -80,13 +80,11 @@ exports.createCategory = asyncHandler(async (req, res) => {
 exports.updateCategory = asyncHandler(async (req, res, next) => {
     const { id } = req.params;
     const { name, description, image } = req.body;
-
     const category = await categoryModel.findOneAndUpdate(
         { _id: id },
-        { name, description, image, slug: slugify(name) },
+        { name, description, image },
         { new: true }
     );
-
     if (!category) {
         return next(new ApiError(`No category for this ID ${id}`, 404));
     }

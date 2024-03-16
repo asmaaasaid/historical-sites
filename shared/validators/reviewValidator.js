@@ -3,7 +3,7 @@ const Review = require('../../Models/reviewModel');
 const validationMiddleWare = require('../../middleware/validationMiddleware');
 
 exports.createReviewValidator = [
-  check('title').optional(),
+  check('name').optional(),
   check('ratings')
     .notEmpty()
     .withMessage('ratings value required')
