@@ -1,7 +1,7 @@
 const express = require("express");
 
 const subCategoryRoute = require('./subCategoryRoutes');
-
+const siteRoute = require('./sitesRoute')
 
 const {
   getCategories,
@@ -26,7 +26,7 @@ const authService = require('../Controllers/authController');
 
 // route of get all sub categories by main category id 
 router.use('/:categoryId/subCategories', subCategoryRoute);
-
+router.use('/:categoryId/sites', siteRoute);
 
 router.get("/", getCategories);
 router.post("/", authService.protect, authService.allowedTo('admin'), uploadCategoryImage, resizeImage, createCategoryValidation, createCategory);

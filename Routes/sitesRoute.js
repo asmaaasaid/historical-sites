@@ -9,9 +9,9 @@ const {getAllSites,
        getSiteById,
        createNewSite,
        updateSite,
-       deleteSite, uploadSiteImages, resizeSiteImages} = require('../Controllers/sitesController');
+       deleteSite, uploadSiteImages, resizeSiteImages, createFilterObj} = require('../Controllers/sitesController');
 
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 const authService = require("../Controllers/authController");
 const reviewRoute = require('../Routes/reviewRoute')
 
@@ -22,7 +22,7 @@ const reviewRoute = require('../Routes/reviewRoute')
 router.use('/:siteId/reviews', reviewRoute);  
 
 
-router.route('/').get(getAllSites)
+router.route('/').get(createFilterObj, getAllSites)
 .post( authService.protect,
        authService.allowedTo('admin'), uploadSiteImages, resizeSiteImages, createSitesValidation , createNewSite);
 

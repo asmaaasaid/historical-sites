@@ -42,10 +42,10 @@ const sitesSchema = new mongoose.Schema(
       ref: "Category",
       required: [true, "The site must belong to a category"],
     },
-    subCategory:[ {
+    subCategory: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'SubCategory'
-    }],
+    },
     ratingAverage: {
       type: Number,
       min: [1, "The rating must be greater than or equal to 1.0"],

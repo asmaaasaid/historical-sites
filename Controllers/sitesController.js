@@ -57,17 +57,30 @@ exports.resizeSiteImages = asyncHandler(async (req, res, next) => {
   }
 });
 
+exports.createFilterObj = (req, res, next) => {
+let filterObject = {};
+  
+if (req.params.categoryId) {
+  filterObject.parentCategory = req.params.categoryId;
+}
 
+if (req.params.subCategoryId) {
+  filterObject.subCategory = req.params.subCategoryId;
+}
+
+req.filterObj = filterObject;
+next();
+}
 
 // Get list of sites
 exports.getAllSites = asyncHandler(async (req, res) => {
   const documentsCounts = await Sites.countDocuments();
 
   // Build query
-  const apiFeatures = new ApiFeatures(Sites.find(), req.query)
+  const apiFeatures = new ApiFeatures(Sites.find(req.filterObj), req.query)
     .paginate(documentsCounts)
     .filter()
-    .search('Sites') // Pass 'Sites' model for search
+    .search() 
     .limitFields()
     .sort()
     .populate();
@@ -111,6 +124,7 @@ exports.createNewSite = asyncHandler(async (req, res) => {
   const site = await Sites.create({ ...req.body, siteId });
   res.status(201).json({ data: site });
 });
+
 
 async function getNextSiteId() {
   try {

@@ -37,17 +37,15 @@ class ApiFeatures {
     return this;
   }
 
-  search(modelName) {
+  search() {
     if (this.queryString.keyword) {
       let query = {};
-      if (modelName === 'Sites') {
+      
         query.$or = [
           { title: { $regex: this.queryString.keyword, $options: 'i' } },
           { description: { $regex: this.queryString.keyword, $options: 'i' } },
         ];
-      } else {
-        query = { name: { $regex: this.queryString.keyword, $options: 'i' } };
-      }
+      
 
       this.mongooseQuery = this.mongooseQuery.find(query);
     }

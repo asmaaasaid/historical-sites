@@ -4,10 +4,10 @@ const { createSubCategory, getAllSubCategories, getSubCategory,
 const { createSubCategoryValidation, getSubCategoryValidation, updateSubCategoryValidation, deleteSubCategoryValidation } = require('../shared/validators/subCategoryValidator');
 
 const authService = require('../Controllers/authController');
-
+const siteRoute = require('./sitesRoute')
 
 const router = express.Router({mergeParams: true}); //access any params from routes
-
+router.use('/:subCategoryId/sites', siteRoute);
 
 router.post(('/'),  authService.protect, authService.allowedTo('admin'), uploadSubCategoryImage, resizeImage, setCategoryIdToBody, createSubCategoryValidation, createSubCategory);
 router.get(('/'), createFilterObj, getAllSubCategories);

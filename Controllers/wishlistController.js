@@ -4,9 +4,8 @@ const asyncHandler = require("express-async-handler");
 
 
 // @route   POST /api/wishlist
-//Add product to wishlist and this access for  User
-exports.addProductToWishlist = asyncHandler(async (req, res, next) => {
-    // $addToSet => add productId to wishlist array if siteId not exist
+exports.addSiteToWishlist = asyncHandler(async (req, res, next) => {
+    // $addToSet => add siteId to wishlist array if siteId not exist
     const user = await User.findByIdAndUpdate(
       req.user._id,
       {
@@ -26,10 +25,10 @@ exports.addProductToWishlist = asyncHandler(async (req, res, next) => {
 
 
   // Remove site from wishlistonly 
-// @route   DELETE /api/wishlist/:productId
+// @route   DELETE /api/wishlist/:siteId
 
-exports.removeProductFromWishlist = asyncHandler(async (req, res, next) => {
-    // $pull => remove productId from wishlist array if productId exist
+exports.removeSiteFromWishlist = asyncHandler(async (req, res, next) => {
+    // $pull => remove siteId from wishlist array if siteId exist
     const user = await User.findByIdAndUpdate(
       req.user._id,
       {
