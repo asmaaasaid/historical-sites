@@ -12,20 +12,7 @@ exports.createReviewValidator = [
   check('user').isMongoId().withMessage('Invalid Review id format'),
   check('site')
     .isMongoId()
-    .withMessage('Invalid Review id format')
-    .custom((val, { req }) =>
-      // Check if logged user create review before
-      Review.findOne({ user: req.user._id, site: req.body.site }).then(
-        (review) => {
-          console.log(review);
-          if (review) {
-            return Promise.reject(
-              new Error('You already created a review before')
-            );
-          }
-        }
-      )
-    ),
+    .withMessage('Invalid Review id format'),
   validationMiddleWare,
 ];
 
