@@ -15,8 +15,7 @@ exports.uploadSiteImages = uploadMixOfImages([
     maxCount: 1,
   },
 
-  {
-    name: "images",
+  {name: "images",
     maxCount: 5,
   },
 ]);
