@@ -78,9 +78,10 @@ exports.getAllSites = asyncHandler(async (req, res) => {
 
   // Build query
   const apiFeatures = new ApiFeatures(Sites.find(req.filterObj), req.query)
-    .paginate(documentsCounts)
+  .search()  
+  .paginate(documentsCounts)
     //.filter()
-    .search() 
+    
     .limitFields()
     .sort()
     .populate();

@@ -7,7 +7,7 @@ const {
   deleteUser,
   uploadUserProfileImage,
   resizeImage,
-  changeUserPassword,
+  
   getLoggedUserData,
   updateLoggedUserPassword,
   updateLoggedUserData,
@@ -43,8 +43,7 @@ router.delete('/deleteMe', authService.protect, deleteLoggedUserData);
 
 
 
-//route for change password by admin
-router.put('/changePassword/:id', /*changeUserPasswordValidator*/ changeUserPassword);
+
 
 
 router.get("/", authService.protect,
