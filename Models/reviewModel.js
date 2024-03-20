@@ -3,7 +3,7 @@ const Sites = require('./sitesModel');
 
 const reviewSchema = new mongoose.Schema(
     {
-      title: {
+      name: {
         type: String,
       },
       ratings: {

@@ -15,8 +15,7 @@ exports.uploadSiteImages = uploadMixOfImages([
     maxCount: 1,
   },
 
-  {
-    name: "images",
+  {name: "images",
     maxCount: 5,
   },
 ]);
@@ -78,9 +77,10 @@ exports.getAllSites = asyncHandler(async (req, res) => {
 
   // Build query
   const apiFeatures = new ApiFeatures(Sites.find(req.filterObj), req.query)
-    .paginate(documentsCounts)
+  .search()  
+  .paginate(documentsCounts)
     //.filter()
-    .search() 
+    
     .limitFields()
     .sort()
     .populate();

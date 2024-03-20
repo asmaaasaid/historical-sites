@@ -80,26 +80,10 @@ exports.updateUser = asyncHandler(async (req, res, next) => {
       slug: req.body.slug,
       phone: req.body.phone,
       email: req.body.email,
-      profileImage: req.body.profileImage,
-      role: req.body.role,
-    },
-    {
-      new: true,
-    }
-  );
-
-  if (!document) {
-    return next(new ApiError(`No document for this id ${req.params.id}`, 404));
-  }
-  res.status(200).json({ data: document });
-});
-
-exports.changeUserPassword = asyncHandler(async (req, res, next) => {
-  const document = await User.findByIdAndUpdate(
-    req.params.id,
-    {
       password: await bcrypt.hash(req.body.password, 12),
       passwordChangedAt: Date.now(),
+      profileImage: req.body.profileImage,
+      role: req.body.role,
     },
     {
       new: true,
