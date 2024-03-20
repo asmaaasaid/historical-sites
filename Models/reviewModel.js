@@ -43,6 +43,9 @@ const reviewSchema = new mongoose.Schema(
       const imageUrl = `${process.env.BASE_URL}/reviews/${doc.image}`;
       doc.image = imageUrl;
     }
+    else{
+      delete doc.image
+    }
   };
   // findOne, findAll and update
   reviewSchema.post('init', (doc) => {
