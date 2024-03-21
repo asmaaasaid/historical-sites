@@ -15,7 +15,8 @@ asyncHandler(async (req, res, next) => {
       return next(new ApiError(`There is no site for this id ${id}`, 404));
     }
 
-    
+        document.remove();
+
     res.status(200).json({ message: " Deleted successfully" });
   });
   
